@@ -8,14 +8,10 @@ To get the trader started, you need two accounts:
 
 The functions allow for four user-defined parameters: (1) coinID (e.g. ETH for Etherum), (2) holdingTime (e.g. 30, which means that you wait 30 seconds before you sell everything again), (3) budgetShare (e.g. 0.5, which means that you want to invest half of your budget each time you place a buy order), and (4) coinName (e.g. etherum, which is the word you are making twitter API requests on).
 
-	# load functions in helper file
+Important: open two different R Sessions, so you can run the twitter scraping and the trading function in parallel. In the first session, execute the following lines of code:
+
+    # load functions in helper file
     source('src/helper.R')
-    
-    # POLONIEX Authentication
-    poloniex.public <- PoloniexPublicAPI()
-    key <- 'XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX'
-    secret <- 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    poloniex.trading <- PoloniexTradingAPI(key = key, secret = secret)
     
     # Twitter Authentication
     rtweet_consumerkey <- 'XXXXXXXXXXXXXXXXXXXXXXXXX'
@@ -23,6 +19,18 @@ The functions allow for four user-defined parameters: (1) coinID (e.g. ETH for E
     
     # start tweet scraping function (copy this line in a new R session so you can execute the function below in parallel)
     exeTweetDownloader(coinNames = 'ETH')
+    
+
+In the second session, execute the following lines of code:
+    
+    # load functions in helper file
+    source('src/helper.R')
+    
+    # POLONIEX Authentication
+    poloniex.public <- PoloniexPublicAPI()
+    key <- 'XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX'
+    secret <- 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    poloniex.trading <- PoloniexTradingAPI(key = key, secret = secret)
     
     # start trading function
     tclTaskSchedule(exeTrader(coinID = 'ETH', holdingTime = 30, budgetShare = 0.05), redo = TRUE, wait = 800)

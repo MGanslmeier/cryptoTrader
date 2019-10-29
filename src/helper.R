@@ -7,13 +7,13 @@ exeTweetDownloader <- function(coinNames){
 }
 
 # function to buy coin
-buyExe <- function(coinID, budgetShare){
+buyExe <- function(coinID, budgetShare, pair = pair){
 
     # Listen to file update
     initTweet <- file.size('data/tweets.json')
     updateChecker <- T
     while(updateChecker){
-        if(file.size('tweets/coinTweets.json') > initTweet){
+        if(file.size('data/tweets.json') > initTweet){
             updateChecker <- F
         }
     }
@@ -34,7 +34,7 @@ buyExe <- function(coinID, budgetShare){
 }
 
 # function to sell coin
-sellExe <- function(coinID){
+sellExe <- function(coinID, pair = pair){
 
     # Execute sell order
     rate <- ReturnTradeHistory(theObject = poloniex.public, pair = pair) %>%
