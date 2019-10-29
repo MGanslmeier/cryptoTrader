@@ -21,7 +21,7 @@ The functions allow for four user-defined parameters: (1) coinID (e.g. ETH for E
     rtweet_consumerkey <- 'XXXXXXXXXXXXXXXXXXXXXXXXX'
     rtweet_consumersecret  <- 'XXXXXXXXXXXXXXXXXXXXXXXXXX'
     
-    # start tweet scraping function in new RStudio session
+    # start tweet scraping function (copy this line in a new R session so you can execute the function below in parallel)
     exeTweetDownloader(coinNames = 'ETH')
     
     # start trading function
