@@ -1,4 +1,4 @@
-# Crypto Trader: an implementation of an algo trader based on tweets
+# Crypto Trader: buy cryptocurrencies based on tweets within seconds
 
 XXXXXX
 
@@ -8,14 +8,14 @@ XXXXXX
     # POLONIEX Authentication
     poloniex.public <- PoloniexPublicAPI()
     key <- 'XXXXXXX-XXXXXXX-XXXXXXX-XXXXXXX'
-    secret <- 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    secret <- 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     poloniex.trading <- PoloniexTradingAPI(key = key, secret = secret)
     
     # Twitter Authentication
     rtweet_consumerkey <- 'XXXXXXXXXXXXXXXXXXXXXXXXX'
-    rtweet_consumersecret  <- 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    rtweet_consumersecret  <- 'XXXXXXXXXXXXXXXXXXXXXXXXXX'
     
-    # start tweet scraping function
+    # start tweet scraping function in new RStudio session
     exeTweetDownloader(coinNames = 'ETH')
     
     # start trading function

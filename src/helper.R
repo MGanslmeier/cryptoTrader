@@ -1,3 +1,6 @@
+# load libraries
+pacman::p_load(dplyr, streamR, tidyr, jsonlite, curl, tcltk2, rtweet, ROAuth, readr, PoloniexR, cryptor, digest)
+
 # function to get tweets
 exeTweetDownloader <- function(coinNames){
     stream_tweets(q = coinNames, timeout = 1000000, file_name = 'data/tweets.json', parse = FALSE)
@@ -25,10 +28,9 @@ buyExe <- function(coinID, budgetShare){
     buySuccess <- as.numeric(buySuccess$amountUnfilled) == 0
 
     # Create entry in order book
-    orderBook <<- rbind(orderBook, c('orderType'= 'buy', 'orderPair' = pair, 'orderTime'= Sys.time(),
-                                    'orderPrice'= rate, 'orderAmount'= buyAmount))
     print(paste('Bought: ', pair, ' ', buyAmount, ' at ', Sys.time(), ' with rate ', rate, sep=''))
-
+    orderBook <<- rbind(orderBook, c('orderType'= 'buy', 'orderPair' = pair, 'orderTime'= Sys.time(),
+                                     'orderPrice'= rate, 'orderAmount'= buyAmount))
 }
 
 # function to sell coin
@@ -43,10 +45,9 @@ sellExe <- function(coinID){
                           args = list(currencyPair = pair, rate = rate, amount = sellAmount))
 
     # Create entry in order book
+    print(paste('Sold: ', pair, ' ', sellAmount, ' at ', Sys.time(), ' with rate ', rate, sep=''))
     orderBook <<- rbind(orderBook, c('orderType'= 'sell', 'orderPair' = pair, 'orderTime'= Sys.time(),
                                      'orderPrice'= rate, 'orderAmount'= sellAmount))
-    print(paste('Sold: ', pair, ' ', sellAmount, ' at ', Sys.time(), ' with rate ', rate, sep=''))
-
 }
 
 # function to trade
@@ -72,6 +73,3 @@ exeTrader <- function(coinID, holdingTime, budgetShare){
         buySuccess <- FALSE
     }
 }
-
-
-
